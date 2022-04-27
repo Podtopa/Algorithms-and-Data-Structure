@@ -29,13 +29,61 @@ class Stack {
     }
 }
 
-const stack = new Stack([1, 2, 3, 4, 5]);
+const stack = new Stack([6, 3, 5, 2, 5, 1, 1, 5, 3, 4, 5]);
 stack.print();
-// console.log(stack.isEmpty());
-// console.log(stack.peek());
-// console.log(stack.pop());
-// console.log(stack.pop());
-// // stack.clear();
-// stack.print();
-// stack.push(8);
-// stack.print();
+let array = [];
+
+// ----- 1
+
+while (!stack.isEmpty()) {
+    const value = stack.pop();
+    array.push(value);
+    if (!stack.isEmpty()) {
+        stack.pop();
+    }
+}
+
+while (array.length != 0) {
+    stack.push(array.pop());
+}
+
+stack.print();
+
+// ----- 2
+
+let min = Infinity;
+while (!stack.isEmpty()) {
+    const value = stack.pop();
+    array.push(value);
+    if (value < min) {
+        min = value;
+    }
+}
+
+while (array.length != 0) {
+    const item = array.pop();
+    stack.push(item);
+    if (item === min) {
+        stack.push(0);
+    }
+}
+
+stack.print();
+
+// ----- 3
+
+const top = stack.peek();
+
+while (!stack.isEmpty()) {
+    const value = stack.pop();
+    if (value !== top) {
+        array.push(value);
+    }
+}
+
+while (array.length != 0) {
+    const item = array.pop();
+    stack.push(item);
+}
+
+stack.print();
