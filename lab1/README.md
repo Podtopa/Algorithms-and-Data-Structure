@@ -1,4 +1,6 @@
 # Lab1
+_____
+## Stack
 
 ### In this laboratory work I needed to do the following tasks:
 
