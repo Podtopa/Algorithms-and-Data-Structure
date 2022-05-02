@@ -125,6 +125,7 @@ function deepClone(list) {
 
 const clone = deepClone(list);
 console.log(clone.head);
+console.log('-----------------------------------');
 
 // ------- 2
 
@@ -140,3 +141,53 @@ function sort(list) {
 
 sort(clone);
 console.log(clone.head);
+console.log('-----------------------------------');
+
+// ------- 3
+
+const surnames = new LinkedList();
+surnames.fromArray([ 'Arestovich', 'Bondar', 'Kim', 'Ternovyi' ]);
+
+const tickets = new LinkedList();
+tickets.fromArray([ 1, 21, 13, 56, 2, 9 ]);
+
+function exam(list1, list2) {
+    while (list1.head !== null) {
+        const surname = list1.deleteHead();
+        const ticket = list2.deleteHead();
+        console.log(`student ${surname.data} - №${ticket.data} ticket`);
+    }
+}
+
+exam(surnames, tickets);
+console.log('-----------------------------------');
+
+// ------- 4
+
+const M = 2;
+const N = 3;
+
+const customers = new LinkedList();
+customers.fromArray([ 'Arestovich', 'Bondar', 'Kim', 'Ternovyi', 'Dantes' ]);
+
+const goods = new LinkedList();
+goods.fromArray([ 'apple', 'milk', 'bread', 'chocolate', 'orandge', 'sugar', 'rice', 'salt', 'buckwheat', 'corn' ]);
+
+function iteration(node, index) {
+    if (!node) {
+        return null;
+    }
+
+    if (index !== 1) {
+        return iteration(node.next, index - 1);
+    }
+    return node.next;
+}
+
+let customer = customers.head;
+let good = goods.head;
+while (customer !== null) {
+    console.log(`customer ${customer.data} bought ${good.data}`);
+    customer = iteration(customer, M);
+    good = iteration(good, N);
+}
