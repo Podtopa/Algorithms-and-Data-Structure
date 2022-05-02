@@ -106,26 +106,37 @@ class LinkedList {
     }
 }
 
+// ------- 1
 
 const list = new LinkedList();
-list.apend(7);
-list.apend(3);
-list.apend(5);
-// console.log(list.head);
-
-const node = list.find(3);
-list.insertAfter(8, node);
-// console.log(list.head);
-
-list.delete(6);
-// console.log(list.head);
-// console.log(list.tail);
-
-const deleted = list.deleteHead();
-// console.log(list.head);
-// console.log(deleted);
-
 const arr = [5, 4, 9, 1];
 list.fromArray(arr);
-console.log(list.head.next.next.next);
-console.log(list.tail);
+
+function deepClone(list) {
+    const copy = new LinkedList();
+    let node = list.head;
+    while (node !== null) {
+        copy.apend(node.data);
+        node = node.next;
+    }
+
+    return copy;
+}
+
+const clone = deepClone(list);
+console.log(clone.head);
+
+// ------- 2
+
+function sort(list) {
+    const arr = [];
+    while (list.head !== null) {
+        const node = list.deleteHead();
+        arr.push(node.data);
+    }
+    arr.sort((a, b) => a - b);
+    list.fromArray(arr);
+}
+
+sort(clone);
+console.log(clone.head);
